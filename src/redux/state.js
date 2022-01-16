@@ -2,8 +2,8 @@ import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 /*****************************************
- * store - наша хранилище временное
- */
+ * !store - наше хранилище временное
+ *******************************************/
 let store = {
     _state: {
         profilePage: {
@@ -13,7 +13,7 @@ let store = {
                 {id: 3, message: 'Blabla', likesCount: 11},
                 {id: 4, message: 'Dada', likesCount: 11}
             ],
-            newPostText: ''  //зануление строки после ввода!!!
+            newPostText: ''  //!зануление строки после ввода!!!
         },
         dialogsPage: {
             dialogs: [
@@ -31,11 +31,11 @@ let store = {
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Yo'}
             ],
-            newMessageBody: "" //зануление строки после ввода!!
+            newMessageBody: "" //!зануление строки после ввода!!
         },
         sidebar: {}
     },
-    //ф-ия заглушка
+    //!ф-ия заглушка
     _callSubscriber() {
         console.log('State changed');
     },
@@ -45,22 +45,21 @@ let store = {
         return this._state;
     },
     subscribe(observer) {
-        this._callSubscriber = observer;  // observer
+        this._callSubscriber = observer;  // !observer
     },
-    /***********************
-     * метод subscribe для передачи ф-ии путём избежания циеличности в импортах (соблюдание архитектуры)
-     * observer -  та функция, которую передаём
-      * 
-     */
+    /************************************************************************************************
+     * !метод subscribe для передачи ф-ии путём избежания циеличности в импортах (соблюдание архитектуры)
+     * !observer -  та функция, которую передаём
+     **********************************************************************************************/
 
-    /**************************************************************
-     * 1) dispath для разгрузки передаваемых параметров
-     * 2) action - объект, который содержит обязательно {type: 'type'}
-     */
+    /***********************************************************************************************
+     *! 1) dispath для разгрузки передаваемых параметров
+     *! 2) action - объект, который содержит обязательно {type: 'type'}
+     *********************************************************************************************/
     dispatch(action) {
-        /*********************
-         * в reducer передаем только нужные части state, а не весь
-         */
+        /**********************************************************
+         *! в reducer передаем только нужные части state, а не весь
+         **********************************************************/
         this._state.profilePage = profileReducer(this._state.profilePage, action);
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
         this._state.sidebar = sidebarReducer(this._state.sidebar, action);
@@ -72,4 +71,4 @@ let store = {
 
 export default store;
 window.store = store;
-// store - OOP
+//! store - чтобы мы могли мониторить содержимое store через консоль!!!!!!!!!!!!!!!!!!!!!!!!!!

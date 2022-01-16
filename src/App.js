@@ -8,6 +8,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const App = (props) => {
     return (
+        /*********************************************************************************************
+         *! React Router — это стандартная библиотека для маршрутизации в React. Он обеспечивает навигацию 
+         *! между представлениями различных компонентов в приложении React, позволяет изменять URL-адрес 
+         * браузера и поддерживает синхронизацию пользовательского интерфейса с URL-адресом.
+         *******************************************************************************************/
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header />
@@ -15,7 +20,9 @@ const App = (props) => {
 
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path='/dialogs/*'
+                        <Route path='/dialogs/*'              /**
+                                                                * ! звёздочка в конце пути - это разрешение к изменению url для других изменений))) (NavLink)
+                                                                */
                             element={ <Dialogs store={props.store} />} />
 
                         <Route path='/profile'
